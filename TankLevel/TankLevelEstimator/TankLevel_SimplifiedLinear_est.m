@@ -52,7 +52,7 @@ U_e = [Q_p_e; U_v_e];
 % f = [f_1; f_2]
 
 
-f = SimplifiedNonlinear(X,U,H,A_s,A_r,K_vv,Gamma); %Tank Level Dyanmics
+f = TankLevelDynamics_SimplifiedNonlinear(X,U,H,A_s,A_r,K_vv,Gamma); %Tank Level Dyanmics
 
 
 % Output Equations

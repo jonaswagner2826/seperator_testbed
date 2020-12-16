@@ -25,3 +25,29 @@ sys_cntrl = nlsys.append(sys_cntrl,sys_cntrl)
 sys_plant_cntrl_open = nlsys.series(sys_plant,sys_cntrl)
 
 sys_plant_cntrl_closed = nlfeedback(sys_plant_cntrl_open)
+
+% Simulation ---------------------
+N = 100;
+t_step = 0.1;
+t_max = N * t_step - t_step;
+T = reshape(0:t_step:t_max,N,1);
+u_0= [0.5, 0.25];
+U = u_0.* abs(sin(T));
+
+
+
+% subplot(3,1,1)
+figure()
+SYS = sys_plant.nlsim(sys_plant,U,T,x_0);
+X = cell2mat({SYS(1:N).x});
+plot(X')
+% 
+% subplot(3,1,2)
+% SYS = sys_plant_cntrl_open.nlsim(sys_plant_cntrl_open,U,T);
+% X = cell2mat({SYS(1:N).x});
+% plot(X')
+% 
+% subplot(3,1,3)
+% SYS = sys_plant_cntrl_cloased.nlsim(sys_plant_cntrl_cloased,U,T);
+% X = cell2mat({SYS(1:N).x});
+% plot(X')
