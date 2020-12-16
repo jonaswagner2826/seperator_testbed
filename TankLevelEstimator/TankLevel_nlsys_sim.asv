@@ -1,0 +1,23 @@
+% Tank Level Simulation, Control, and Estimator/Detector
+% Jonas Wagner 2020-12-15
+
+clear
+close all
+
+% Initial Setup
+% Constants - (estimated)
+h = 2;
+a_s = pi * (0.25)^2;
+a_r = pi * (0.75)^2;
+k_vv = 2.16;
+gamma = 0.098;
+
+% Nonlinear State Eq
+f = @(x,u) TankLevelDynamics_SimplifiedNonlinear(x,u,h,a_s,a_r,k_vv,gamma);
+h = nlsys.h_default(2,2); % n = 2, q = 2
+x_0 = [ 0.5;
+        0.25];
+
+
+sys_plant = nlsys(f,h,x_0)
+
