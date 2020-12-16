@@ -22,4 +22,6 @@ sys_cntrl = nlsys(pid(1,1));
 
 sys_cntrl = nlsys.append(sys_cntrl,sys_cntrl)
 
-% sys_plant_cntrl = nlsys.series(sys_plant,sys_cntrl)
+sys_plant_cntrl_open = nlsys.series(sys_plant,sys_cntrl)
+
+sys_plant_cntrl_closed = nlfeedback(sys_plant_cntrl_open)
