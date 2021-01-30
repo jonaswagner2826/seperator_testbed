@@ -46,17 +46,17 @@ U_plant = SYS_plant.U;
 % close all
 
 %% PID control
-k_p = 1.5;
-k_i = 1;
-k_d = 0.1;
+k_p = 2;
+k_i = 1.5;
+k_d = 0;%0.001;
 
 sys_cntrl = nlsys.pid(k_p,k_i,k_d);
 sys_cntrl = nlsys.append(sys_cntrl,sys_cntrl); %U is two dims...
 sys_plant_cntrl_open = nlsys.series(sys_cntrl, sys_plant); %Foward loop
 sys_plant_cntrl_closed = nlfeedback(sys_plant_cntrl_open); %Unity feedback
 
-U = [x_0(1)*ones(size(T));x_0(2)*ones(size(T))+sin(T)];
+U = [u_0(1)*ones(size(T));u_0(2)*ones(size(T))+sin(T)];
 
 SYS_closed = nlsim(sys_plant_cntrl_closed,U,T);
 
-SYS_closed.plot([7,8],[1,2],-1);
+SYS_closed.plot([3,4],[1,2],-1);
