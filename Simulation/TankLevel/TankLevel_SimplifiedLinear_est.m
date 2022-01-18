@@ -51,9 +51,7 @@ U_e = [Q_p_e; U_v_e];
 % 
 % f = [f_1; f_2]
 
-
 f = TankLevelDynamics_SimplifiedNonlinear(X,U,H,A_s,A_r,K_vv,Gamma); %Tank Level Dyanmics
-
 
 % Output Equations
 g_1 = X_s;
@@ -129,7 +127,6 @@ g = [u_e(1) * sin(2*t/N);
  
 noisePower = 20;
 x = lsim(sys, g, t);
-% x = nlsim(@SimplifiedNonlinear,g,t,0,0.1);
 y = awgn(x,noisePower,'measured');
 x_est = lsim(sys_obsv, [g',y], t');
 
