@@ -135,10 +135,12 @@ x_measure_error = y - x;
 x_est_error = x_est-x;
 
 figure()
-plot([x_est, y])
+plot([x, x_est, y])
+title('Actual vs Estimated vs Measured States')
 
 figure()
 plot([x_est_error(:,1),x_measure_error(:,1)])
+title('Measurment and Estimation Error')
 legend('est','measure')
 
 
