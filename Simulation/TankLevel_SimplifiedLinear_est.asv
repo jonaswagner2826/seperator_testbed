@@ -11,8 +11,8 @@ syms H A_s A_r K_vv Gamma
 h = 2; % m
 a_s = pi * (0.25)^2; % m^2
 a_r = pi * (0.75)^2; % m^2
-k_vv = 2.16; % m^3 / bar hr
-gamma = 0.098; % bar / m
+k_vv = 2.16; % m^3 / bar 
+gamma = 0.098;
 
 % State Varibles
 syms x_s x_r
@@ -74,6 +74,9 @@ D = subs(jacobian(g,u),[X,U],[X_e,U_e]);
 % Linearized Equations
 x_dot = A * x + B * u;
 y_meas = C * x + D * u;
+
+% X_dot = A * x + B * u;
+% Y = C * x + D * u + [x_s_e; x_r_e];
 
 % Discretization ------------------------------------------------
 syms T
